@@ -2,19 +2,23 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Table(name="user")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -40,6 +44,18 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $country;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Command", mappedBy="code")
+     */
+    private $code_user;
+
+    public function __construct()
+    {
+        $this->code_user = new ArrayCollection();
+        parent::__construct();
+    }
+
 
     public function getId()
     {
@@ -105,4 +121,36 @@ class User
 
         return $this;
     }
+
+    /**
+     * @return Collection|Command[]
+     */
+    public function getCodeUser(): Collection
+    {
+        return $this->code_user;
+    }
+
+    public function addCodeUser(Command $codeUser): self
+    {
+        if (!$this->code_user->contains($codeUser)) {
+            $this->code_user[] = $codeUser;
+            $codeUser->setCode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCodeUser(Command $codeUser): self
+    {
+        if ($this->code_user->contains($codeUser)) {
+            $this->code_user->removeElement($codeUser);
+            // set the owning side to null (unless already changed)
+            if ($codeUser->getCode() === $this) {
+                $codeUser->setCode(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -1,0 +1,14 @@
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: App\Entity\User
+    service:
+        mailer: fos_user.mailer.twig_swift
+    from_email:
+        address: crownbackend@gmail.com
+        sender_name: Demo Registration
+    #registration:
+     #   form:
+      #      type: App\Form\User
+       # confirmation:
+        #    enabled: true

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,6 +52,24 @@ class Product
      * @ORM\Column(type="string", length=255)
      */
     private $reference;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="product_id")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $product_id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\LinesOfCommand", mappedBy="code_product")
+     */
+    private $code_product;
+
+
+    public function __construct()
+    {
+        $this->category = new ArrayCollection();
+        $this->code_product = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -139,4 +159,48 @@ class Product
 
         return $this;
     }
+
+    public function getProductId(): ?Category
+    {
+        return $this->product_id;
+    }
+
+    public function setProductId(?Category $product_id): self
+    {
+        $this->product_id = $product_id;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|LinesOfCommand[]
+     */
+    public function getCodeProduct(): Collection
+    {
+        return $this->code_product;
+    }
+
+    public function addCodeProduct(LinesOfCommand $codeProduct): self
+    {
+        if (!$this->code_product->contains($codeProduct)) {
+            $this->code_product[] = $codeProduct;
+            $codeProduct->setCodeProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCodeProduct(LinesOfCommand $codeProduct): self
+    {
+        if ($this->code_product->contains($codeProduct)) {
+            $this->code_product->removeElement($codeProduct);
+            // set the owning side to null (unless already changed)
+            if ($codeProduct->getCodeProduct() === $this) {
+                $codeProduct->setCodeProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
