@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{ title }}</title>
+        {% block stylesheets %}
+            {{ include ('inc/css.html.twig') }}
+        {% endblock %}
     </head>
     <body>
+        {% block header %}
+            {{ include ('inc/header.html.twig') }}
+        {% endblock %}
+
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+        {% block footer %}
+            {{ include ('inc/footer.html.twig') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ include ('inc/js.html.twig') }}
+        {% endblock %}
     </body>
 </html>
