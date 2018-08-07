@@ -16,11 +16,3 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
-
-index:
-    path: /
-    controller: App\Controller\FrontController::index
-
-index_back_office:
-    path: /admin
-    controller: App\Controller\BackController::index
