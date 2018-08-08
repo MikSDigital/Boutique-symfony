@@ -7,8 +7,8 @@ fos_user:
     from_email:
         address: crownbackend@gmail.com
         sender_name: Demo Registration
-    #registration:
-     #   form:
-      #      type: App\Form\User
+    registration:
+        form:
+            type: App\Form\RegistrationType
        # confirmation:
         #    enabled: true

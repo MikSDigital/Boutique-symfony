@@ -23,32 +23,32 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $lastName;
+    protected $lastName;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $firstName;
+    protected $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $adresses;
+    protected $adresses;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $zipCode;
+    protected $zipCode;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $country;
+    protected $country;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Command", mappedBy="code")
      */
-    private $code_user;
+    protected $code_user;
 
     public function __construct()
     {

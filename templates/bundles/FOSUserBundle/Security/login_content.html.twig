@@ -1,0 +1,46 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<section class="bg0 p-t-104 p-b-116 text-center">
+    <div class="container">
+        <div class="flex-w flex-tr">
+            <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+
+                {% if error %}
+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    {% if csrf_token %}
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    {% endif %}
+
+                    <h4 class="mtext-105 cl2 txt-center p-b-30">
+                        Connecter vous !
+                    </h4>
+
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" placeholder="Adresse mail ou nom d'utilisateur" type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" >
+                        <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
+                    </div>
+
+                    <div class="bor8 m-b-20 how-pos4-parent">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" placeholder="Mot de passe" type="password" id="password" name="_password" required="required" autocomplete="current-password" >
+                    </div>
+
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+                    <button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
