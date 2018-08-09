@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Product;
 use App\Form\CategoryType;
+use App\Form\ProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +26,17 @@ class BackController extends Controller
 
         return $this->render('back/index.html.twig', [
             'title' => 'Bienvenue dans votre back-Office'
+        ]);
+    }
+
+    /**
+     * @Route("/listes-des-produits", name="show-product", methods="GET")
+     * @return Response
+     */
+    public function showProduct(): Response {
+
+        return $this->render('back/show-product.html.twig', [
+            'title' => 'Listes de tous les produits disponibles'
         ]);
     }
 
@@ -52,6 +65,33 @@ class BackController extends Controller
         return $this->render('back/CRUD/add-category.html.twig', [
             'title' => 'Ajouter une categorie',
             'addCategory' => $addCategory->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/produits/ajouter", name="add-product", methods="POST|GET")
+     * @param Request
+     * @return Response
+     */
+    public function addProduct(Request $request): Response {
+
+        $product = new Product();
+        $addProduct = $this->createForm(ProductType::class, $product);
+        $addProduct->handleRequest($request);
+
+        if($addProduct->isSubmitted() && $addProduct->isValid()) {
+            $product = $addProduct->getData();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($product);
+            $manager->flush();
+
+            $this->addFlash('product', 'Le produits à bien été ajouté');
+            return $this->redirectToRoute('index_back_office');
+        }
+
+        return $this->render('back/CRUD/add-product.html.twig', [
+            'title' => 'Ajouter un produit a votre boutique',
+            'addProduct' => $addProduct->createView()
         ]);
     }
 

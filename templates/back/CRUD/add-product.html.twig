@@ -1,0 +1,43 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>Ajouter un produit</h1>
+        <br>
+        {{ form_start(addProduct) }}
+         <div class="form-group">
+            {{ form_widget(addProduct.name) }}
+         </div>
+         <div class="form-group">
+            {{ form_widget(addProduct.description) }}
+         </div>
+         <div class="form-group">
+             <div class="custom-control custom-checkbox">
+                {{ form_widget(addProduct.isPublished) }}
+                {{ form_label(addProduct.isPublished, 'Publier') }}
+             </div>
+         </div>
+         <div class="form-group">
+            {{ form_label(addProduct.price, 'Prix') }}
+             €
+            {{ form_widget(addProduct.price) }}
+         </div>
+         <div class="form-group">
+                {{ form_widget(addProduct.imageFile) }}
+         </div>
+         <div class="form-group">
+            {{ form_label(addProduct.reference, 'Réference du produits') }}
+            {{ form_widget(addProduct.reference) }}
+         </div>
+        <div class="form-group">
+            {{ form_label(addProduct.product_id, 'Catégorie') }}
+            {{ form_widget(addProduct.product_id) }}
+        </div>
+        <button class="btn btn-primary" type="submit">Ajouter</button>
+        {{ form_end(addProduct) }}
+    </div>
+<br>
+<br>
+<br>
+{% endblock %}
