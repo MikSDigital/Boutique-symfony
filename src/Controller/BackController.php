@@ -35,8 +35,12 @@ class BackController extends Controller
      */
     public function showProduct(): Response {
 
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $product = $repository->findAll();
+
         return $this->render('back/show-product.html.twig', [
-            'title' => 'Listes de tous les produits disponibles'
+            'title' => 'Listes de tous les produits disponibles',
+            'products' => $product
         ]);
     }
 
@@ -46,6 +50,9 @@ class BackController extends Controller
      * @return Response
      */
     public function addCategory(Request $request): Response {
+
+        $manager = $this->getDoctrine()->getRepository(Category::class);
+        $showCategory = $manager->findAll();
 
         $category = new Category();
         $addCategory = $this->createForm(CategoryType::class, $category);
@@ -59,12 +66,13 @@ class BackController extends Controller
             $manager->flush();
 
             $this->addFlash('category', 'La catégorie à bien été ajouté.');
-            return $this->redirectToRoute('index_back_office');
+            return $this->redirectToRoute('add-category');
         }
 
         return $this->render('back/CRUD/add-category.html.twig', [
             'title' => 'Ajouter une categorie',
-            'addCategory' => $addCategory->createView()
+            'addCategory' => $addCategory->createView(),
+            'showCategory' => $showCategory
         ]);
     }
 

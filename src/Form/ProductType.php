@@ -31,11 +31,7 @@ class ProductType extends AbstractType
                     'placeholder' => 'Description du produit'
                 ]
             ])
-            ->add('isPublished', CheckboxType::class, [
-                'attr' => [
-                    'class' => 'custom-control-input'
-                ]
-            ])
+            ->add('isPublished', CheckboxType::class)
             ->add('price', NumberType::class, [
                 'attr' => [
                     'class' => 'form-control'
@@ -46,8 +42,12 @@ class ProductType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('imageFile', FileType::class)
-            ->add('product_id', null, [
+            ->add('imageFile', FileType::class, [
+                'attr' => [
+                    'class' => 'custom-file-input'
+                ]
+            ])
+            ->add('category', null, [
                 'attr' => [
                     'class' => 'form-control'
                 ]

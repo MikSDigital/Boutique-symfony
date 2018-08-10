@@ -52,15 +52,10 @@ class Product
     private $reference;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="product_id")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="product", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $product_id;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\LinesOfCommand", mappedBy="code_product")
-     */
-    private $code_product;
+    private $category;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -97,6 +92,7 @@ class Product
     {
         $this->category = new ArrayCollection();
         $this->code_product = new ArrayCollection();
+        $this->createdAt = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
     }
 
     public function getId()
@@ -188,14 +184,14 @@ class Product
         return $this;
     }
 
-    public function getProductId(): ?Category
+    public function getCategory()
     {
-        return $this->product_id;
+        return $this->category;
     }
 
-    public function setProductId(?Category $product_id): self
+    public function setCategory(?Category $category): self
     {
-        $this->product_id = $product_id;
+        $this->category = $category;
 
         return $this;
     }

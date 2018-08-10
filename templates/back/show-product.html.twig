@@ -2,4 +2,43 @@
 
 {% block body %}
 
+<div class="container">
+        <h1>Listes de tous les produits</h1>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nom du produit</th>
+                <th scope="col">Publier</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Référence</th>
+                <th scope="col">Catégorie</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+            <tr class="table-primary">
+                <th scope="row">{{ product.id }}</th>
+                <td>
+                    <a href="">
+                    {{ product.name }}
+                    </a>
+                </td>
+                <td>{{ product.isPublished }}</td>
+                <td>{{ product.description | truncate('50') }}</td>
+                <td><img src="{{ asset('images/products/'~product.imageName) }}" alt="{{ product.imageName }}" width="50px" height="50"> </td>
+                <td>{{ product.price }}€</td>
+                <td>{{ product.reference }}</td>
+                <td>{{ product.category}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+</div>
+
+
 {% endblock %}
