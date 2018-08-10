@@ -24,16 +24,7 @@
                     <a class="nav-link" href="{{ path('index_back_office') }}">Accueil<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('add-category') }}">Ajouter une catégorie</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('add-product') }}">Ajouter un produit</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Clients</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Historiques de commandes</a>
+                    <a class="nav-link" href="{{ path('add-category') }}">Catégorie</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,8 +33,17 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ path('show-product') }}">Listes des produtis</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="{{ path('add-product') }}">Ajouter un produits</a>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Clients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Historiques de commandes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('index') }}" target="_blank">Accedez au site</a>
                 </li>
 
             </ul>
@@ -55,8 +55,8 @@
     </nav>
 </header>
 <br>
-    <p>Accedez au site : <a class="btn btn-primary" href="{{ path('index') }}" target="_blank">Cliquer ici</a></p>
-
+<br>
+<br>
 
 {% block body %}{% endblock %}
 

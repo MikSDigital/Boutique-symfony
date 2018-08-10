@@ -1,0 +1,17 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>Modifié une categorie</h1>
+    {{ form_start(editCategory) }}
+            {{ form_label(editCategory.name, 'Catégorie') }}
+        <div class="form-group">
+            {{ form_widget(editCategory.name) }}
+        </div>
+        <button class="btn btn-primary" type="submit">Modifier</button>
+
+    {{ form_end(editCategory) }}
+
+    </div>
+{% endblock %}

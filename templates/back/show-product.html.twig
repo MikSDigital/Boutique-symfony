@@ -1,9 +1,12 @@
 {% extends 'back/base.html.twig' %}
 
 {% block body %}
-
-<div class="container">
-        <h1>Listes de tous les produits</h1>
+<br>
+<br>
+<br>
+<br>
+<div class="container-fluid">
+        <h1 class="text-center">Listes de tous les produits</h1>
 
         <table class="table table-hover">
             <thead>
@@ -16,6 +19,12 @@
                 <th scope="col">Prix</th>
                 <th scope="col">Référence</th>
                 <th scope="col">Catégorie</th>
+                <th scope="col">
+                    <a href="{{ path('add-product') }}">
+                    Ajouter un produit
+                    </a>
+                </th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -33,6 +42,11 @@
                 <td>{{ product.price }}€</td>
                 <td>{{ product.reference }}</td>
                 <td>{{ product.category}}</td>
+                <td>
+                    <a href="#" class="btn btn-info">Voir</a>
+                    <a href="#" class="btn btn-success">Modifier</a>
+                    <a href="#" class="btn btn-danger">Supprimer</a>
+                </td>
             </tr>
             {% endfor %}
             </tbody>

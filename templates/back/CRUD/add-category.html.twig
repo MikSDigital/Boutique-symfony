@@ -16,8 +16,6 @@
 
 </div>
     <br>
-    <br>
-    <br>
     <div class="container">
         <h1>Listes de tous les catégories</h1>
 
@@ -27,6 +25,7 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Nom de la catégorie</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -34,11 +33,31 @@
         <tr class="table-primary">
             <th scope="row"> {{ category.id }}</th>
             <td> {{ category.name }}</td>
+            <td>
+                <a href="{{ path('edit-category', {id: category.id}) }}" class="btn btn-success">Modifier</a>
+                <a href="{{ path('delete-category', {id: category.id}) }}" class="btn btn-danger delete" data-confirm="Voulez vous vraiment supprimer cette catégorie ?">Supprimer</a>
+            </td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
     </div>
+
+    <script>
+        var deleteLinks = document.querySelectorAll('.delete');
+
+        for (var i = 0; i < deleteLinks.length; i++) {
+            deleteLinks[i].addEventListener('click', function(event) {
+                event.preventDefault();
+
+                var choice = confirm(this.getAttribute('data-confirm'));
+
+                if (choice) {
+                    window.location.href = this.getAttribute('href');
+                }
+            });
+        }
+    </script>
 
 
 {% endblock %}

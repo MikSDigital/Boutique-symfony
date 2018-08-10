@@ -77,6 +77,48 @@ class BackController extends Controller
     }
 
     /**
+     * @Route("/categorie/modifier/{id}", name="edit-category", methods="GET|POST", requirements={"page"="\d+"})
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function editCategory(Request $request, int $id): Response {
+
+        $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
+        $editCategory = $this->createForm(CategoryType::class, $category);
+        $editCategory->handleRequest($request);
+
+        if($editCategory->isSubmitted() && $editCategory->isValid()) {
+            $category = $editCategory->getData();
+            $categories = $this->getDoctrine()->getManager();
+            $categories->flush();
+            $this->addFlash('Category', 'La catégorie a bien été modifié');
+            return $this->redirectToRoute('index_back_office');
+        }
+        return $this->render('back/CRUD/edit-category.html.twig', [
+            'title' => 'Modifier une categorie',
+            'editCategory' => $editCategory->createView()
+        ]);
+    }
+
+    /**
+     * @Route("categorie/supprimer/{id}", name="delete-category", methods="GET", requirements={"page"="\d+"})
+     * @param int $id
+     * @return Response
+     */
+    public function deleteCategory(int $id): Response {
+
+        $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
+
+        $deleteCategory = $this->getDoctrine()->getManager();
+        $deleteCategory->remove($category);
+        $deleteCategory->flush();
+
+        $this->addFlash('category', 'La catégorie a bien été supprimé');
+        return $this->redirectToRoute('add-category');
+    }
+
+    /**
      * @Route("/produits/ajouter", name="add-product", methods="POST|GET")
      * @param Request
      * @return Response
