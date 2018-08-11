@@ -14,22 +14,33 @@ class FrontController extends Controller
 
     /**
      * @Route("/", name="index", methods="GET")
+     * @param Request $request
      * @return Response
      */
-    public function index(): Response {
+    public function index(Request $request): Response {
 
-        $repository = $this->getDoctrine()->getRepository(Product::class);
-        $product = $repository->findAll();
+        $em    = $this->get('doctrine.orm.entity_manager');
+        $dql   = "SELECT p FROM App:Product p";
+        $query = $em->createQuery($dql);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
 
         $repositoryCategory = $this->getDoctrine()->getRepository(Category::class);
         $category = $repositoryCategory->findAll();
 
-
+        $repositorySlider = $this->getDoctrine()->getRepository(Product::class);
+        $slider = $repositorySlider->findBySlider();
 
         return $this->render('front/index.html.twig', [
             'title' => 'Accueil',
-            'products' => $product,
-            'categories' => $category
+            'pagination' => $pagination,
+            'categories' => $category,
+            'sliders' => $slider
         ]);
     }
 

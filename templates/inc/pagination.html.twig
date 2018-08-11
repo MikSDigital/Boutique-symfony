@@ -1,0 +1,39 @@
+{% if pageCount > 1 %}
+    <div class="flex-c-m flex-w w-full p-t-38">
+        {% if first is defined and current != first %}
+
+            <a class="flex-c-m how-pagination1 trans-04 m-all-7" href="{{ path(route, query|merge({(pageParameterName): first})) }}">&lt;&lt;</a>
+
+        {% endif %}
+
+        {% if previous is defined %}
+
+            <a class="flex-c-m how-pagination1 trans-04 m-all-7" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&lt;</a>
+
+        {% endif %}
+
+        {% for page in pagesInRange %}
+            {% if page != current %}
+
+                <a class="flex-c-m how-pagination1 trans-04 m-all-7" href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+
+            {% else %}
+                <span class="current">{{ page }}</span>
+            {% endif %}
+
+        {% endfor %}
+
+        {% if next is defined %}
+
+            <a class="flex-c-m how-pagination1 trans-04 m-all-7" href="{{ path(route, query|merge({(pageParameterName): next})) }}">&gt;</a>
+
+        {% endif %}
+
+        {% if last is defined and current != last %}
+
+            <a class="flex-c-m how-pagination1 trans-04 m-all-7" href="{{ path(route, query|merge({(pageParameterName): last})) }}">&gt;&gt;</a>
+
+        {% endif %}
+    </div>
+{% endif %}
+
