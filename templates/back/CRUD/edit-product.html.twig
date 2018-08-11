@@ -1,0 +1,36 @@
+{% extends 'back/base.html.twig' %}
+
+{% form_theme editProduct 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1>Modifier le produit</h1>
+    {{ form_start(editProduct) }}
+        <div class="form-group">
+            {{ form_widget(editProduct.name) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(editProduct.description) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(editProduct.isPublished) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(editProduct.price) }}
+        </div>
+        <div class="form-group">
+            <div class="custom-file">
+            {{ form_label(editProduct.imageFile, 'Images', {'attr': {'class': 'custom-file-label'}}) }}
+            {{ form_widget(editProduct.imageFile) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(editProduct.category, 'Catégorie') }}
+            {{ form_widget(editProduct.category) }}
+        </div>
+    <button class="btn btn-info" type="submit">Modifier</button>
+
+    {{ form_end(editProduct) }}
+
+</div>
+{% endblock %}

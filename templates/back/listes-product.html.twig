@@ -36,16 +36,21 @@
                     {{ product.name }}
                     </a>
                 </td>
-                <td>{{ product.isPublished }}</td>
+                <td>{% if product.isPublished == '1' %}
+                        <span class="badge badge-success">Oui</span>
+                        {% elseif product.isPublished == '0' %}
+                            <span class="badge badge-danger">Non</span>
+                    {% endif %}
+                </td>
                 <td>{{ product.description | truncate('50') }}</td>
                 <td><img src="{{ asset('images/products/'~product.imageName) }}" alt="{{ product.imageName }}" width="50px" height="50"> </td>
                 <td>{{ product.price }}€</td>
                 <td>{{ product.reference }}</td>
                 <td>{{ product.category}}</td>
                 <td>
-                    <a href="#" class="btn btn-info">Voir</a>
-                    <a href="#" class="btn btn-success">Modifier</a>
-                    <a href="#" class="btn btn-danger">Supprimer</a>
+                    <a href="{{ path('show-product', {id: product.id}) }}" class="btn btn-info">Voir</a>
+                    <a href="{{ path('edit-product', {id: product.id}) }}" class="btn btn-success">Modifier</a>
+                    <a href="{{ path('delete-product', {id: product.id}) }}" class="btn btn-danger delete" data-confirm="Voulez vous vraiment supprimer cette catégorie ?">Supprimer</a>
                 </td>
             </tr>
             {% endfor %}

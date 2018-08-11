@@ -93,6 +93,7 @@ class Product
         $this->category = new ArrayCollection();
         $this->code_product = new ArrayCollection();
         $this->createdAt = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $this->reference = uniqid('Ref');
     }
 
     public function getId()

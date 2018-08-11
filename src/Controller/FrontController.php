@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,8 +18,33 @@ class FrontController extends Controller
      */
     public function index(): Response {
 
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $product = $repository->findAll();
+
+        $repositoryCategory = $this->getDoctrine()->getRepository(Category::class);
+        $category = $repositoryCategory->findAll();
+
+
+
         return $this->render('front/index.html.twig', [
-            'title' => 'Accueil'
+            'title' => 'Accueil',
+            'products' => $product,
+            'categories' => $category
+        ]);
+    }
+
+    /**
+     * @Route("/trois-produits", name="three-product", methods="GET")
+     * @return Response
+     */
+    public function threeProduct(): Response {
+
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $threeProduct = $repository->findByThreeProduct();
+
+        return $this->render('inc/three-product.html.twig', [
+            'title' => '',
+            'threeProduct' => $threeProduct
         ]);
     }
 
@@ -27,8 +54,16 @@ class FrontController extends Controller
      */
     public function shop(): Response {
 
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $product = $repository->findAll();
+
+        $repository2 = $this->getDoctrine()->getRepository(Category::class);
+        $category = $repository2->findAll();
+
         return $this->render('front/shop.html.twig', [
-            'title' => 'Boutiques'
+            'title' => 'Boutiques',
+            'products' => $product,
+            'categories' => $category
         ]);
     }
 

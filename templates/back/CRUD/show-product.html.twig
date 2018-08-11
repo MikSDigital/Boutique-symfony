@@ -1,0 +1,28 @@
+{% extends 'back/base.html.twig' %}
+
+{% set title = showProduct.name %}
+
+{% block body %}
+    <div class="container">
+        <h1>Fiches produits</h1>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Nom : {{ showProduct.name }}</h5>
+                <p class="card-text"><strong>Description</strong> : {{ showProduct.description }}</p>
+                <p class="card-text"><small class="text-muted">Ajouter le {{ showProduct.createdAt | date("m/d/Y à H:i") }}</small></p>
+                <p class="card-text">
+                {% if showProduct.isPublished == '1' %}
+                   Publier :  <span class="badge badge-success">Oui</span>
+                {% elseif showProduct.isPublished == '0' %}
+                   Publier :  <span class="badge badge-danger">Non</span>
+                {% endif %}
+                </p>
+                <p class="card-text"><strong>Référence</strong> : {{ showProduct.reference }}</p>
+            </div>
+        </div>
+        <p>images</p>
+            <img class="card-img-bottom" src="{{ asset('images/products/'~showProduct.imageName) }}" alt="{{ showProduct.imageName }}">
+
+    </div>
+{% endblock %}

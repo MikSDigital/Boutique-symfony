@@ -30,15 +30,15 @@ class BackController extends Controller
     }
 
     /**
-     * @Route("/listes-des-produits", name="show-product", methods="GET")
+     * @Route("/listes-des-produits", name="listes-product", methods="GET")
      * @return Response
      */
-    public function showProduct(): Response {
+    public function listesProduct(): Response {
 
         $repository = $this->getDoctrine()->getRepository(Product::class);
         $product = $repository->findAll();
 
-        return $this->render('back/show-product.html.twig', [
+        return $this->render('back/listes-product.html.twig', [
             'title' => 'Listes de tous les produits disponibles',
             'products' => $product
         ]);
@@ -93,7 +93,7 @@ class BackController extends Controller
             $categories = $this->getDoctrine()->getManager();
             $categories->flush();
             $this->addFlash('Category', 'La catégorie a bien été modifié');
-            return $this->redirectToRoute('index_back_office');
+            return $this->redirectToRoute('add-category');
         }
         return $this->render('back/CRUD/edit-category.html.twig', [
             'title' => 'Modifier une categorie',
@@ -120,7 +120,7 @@ class BackController extends Controller
 
     /**
      * @Route("/produits/ajouter", name="add-product", methods="POST|GET")
-     * @param Request
+     * @param Request $request
      * @return Response
      */
     public function addProduct(Request $request): Response {
@@ -142,6 +142,63 @@ class BackController extends Controller
         return $this->render('back/CRUD/add-product.html.twig', [
             'title' => 'Ajouter un produit a votre boutique',
             'addProduct' => $addProduct->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/produits/modifier/{id}", name="edit-product", methods="GET|POST")
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function editProduct(Request $request, int $id): Response {
+
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+        $editProduct = $this->createForm(ProductType::class, $product);
+        $editProduct->handleRequest($request);
+
+        if($editProduct->isSubmitted() && $editProduct->isValid()) {
+
+            $product = $editProduct->getData();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->flush();
+            $this->addFlash('product', 'Le produit ç bien été modifié');
+            return $this->redirectToRoute('index_back_office');
+        }
+
+        return $this->render('back/CRUD/edit-product.html.twig', [
+            'title' => 'Modifier un produit',
+            'editProduct' => $editProduct->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/produits/supprimer/{id}", name="delete-product", methods="GET")
+     * @param int $id
+     * @return Response
+     */
+    public function deleteProduct(int $id):Response {
+
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+        $deleteProduct = $this->getDoctrine()->getManager();
+        $deleteProduct->remove($product);
+        $deleteProduct->flush();
+        $this->addFlash('product', 'Le produit à bien été supprimé');
+        return $this->redirectToRoute('index_back_office');
+    }
+
+    /**
+     * @Route("/produits/{id}", name="show-product", methods="GET")
+     * @param int $id
+     * @return Response
+     */
+    public function showProduct(int $id): Response {
+
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+
+        return $this->render('back/CRUD/show-product.html.twig', [
+            'title' => '',
+            'showProduct' => $product
         ]);
     }
 

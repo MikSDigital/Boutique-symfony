@@ -31,13 +31,10 @@ class ProductType extends AbstractType
                     'placeholder' => 'Description du produit'
                 ]
             ])
-            ->add('isPublished', CheckboxType::class)
-            ->add('price', NumberType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ]
+            ->add('isPublished', CheckboxType::class, [
+                'required' => false
             ])
-            ->add('reference', TextType::class, [
+            ->add('price', NumberType::class, [
                 'attr' => [
                     'class' => 'form-control'
                 ]
