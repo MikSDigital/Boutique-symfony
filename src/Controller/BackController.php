@@ -184,7 +184,7 @@ class BackController extends Controller
         $deleteProduct->remove($product);
         $deleteProduct->flush();
         $this->addFlash('product', 'Le produit à bien été supprimé');
-        return $this->redirectToRoute('index_back_office');
+        return $this->redirectToRoute('listes-product');
     }
 
     /**

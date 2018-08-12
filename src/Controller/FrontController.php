@@ -27,7 +27,7 @@ class FrontController extends Controller
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
+            16/*limit per page*/
         );
 
         $repositoryCategory = $this->getDoctrine()->getRepository(Category::class);
@@ -61,20 +61,47 @@ class FrontController extends Controller
 
     /**
      * @Route("/boutique", name="shop", methods="GET")
+     * @param Request $request
      * @return Response
      */
-    public function shop(): Response {
+    public function shop(Request $request): Response {
 
-        $repository = $this->getDoctrine()->getRepository(Product::class);
-        $product = $repository->findAll();
+        $em    = $this->get('doctrine.orm.entity_manager');
+        $dql   = "SELECT p FROM App:Product p";
+        $query = $em->createQuery($dql);
 
-        $repository2 = $this->getDoctrine()->getRepository(Category::class);
-        $category = $repository2->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            16/*limit per page*/
+        );
+
+        $repository = $this->getDoctrine()->getRepository(Category::class);
+        $category = $repository->findAll();
 
         return $this->render('front/shop.html.twig', [
             'title' => 'Boutiques',
-            'products' => $product,
+            'pagination' => $pagination,
             'categories' => $category
+        ]);
+    }
+
+    /**
+     * @Route("/produits/{id}", name="show-product-front", methods="GET")
+     * @param int $id
+     * @return Response
+     */
+    public function showProduct(int $id): Response {
+
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+
+        $productInCategory = $this->getDoctrine()->getRepository(Product::class)->findProductByCategory();
+
+        return $this->render('front/product.html.twig', [
+            'title' => '',
+            'showProduct' => $product,
+            'showProductInCategory' => $productInCategory
         ]);
     }
 

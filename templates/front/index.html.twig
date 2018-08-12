@@ -23,7 +23,7 @@
                             </div>
 
                             <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-                                <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                <a href="{{ path('show-product-front', {id: slider.id}) }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
                                     Voir le produit
                                 </a>
                             </div>
@@ -92,14 +92,14 @@
                     <div class="block2">
                         <div class="block2-pic hov-img0">
                             <img src="{{ asset('images/products/'~product.imageName) }}" alt="{{ product.imageName }}" height="390" width="315">
-                            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                            <a href="#" class="block2-btn flex-c-m stext-103 cl3 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                 Voir un apperçu
                             </a>
                         </div>
 
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                <a href="{{ path('show-product-front', {id: product.id}) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                     {{ product.name }}
                                 </a>
 
@@ -117,8 +117,6 @@
             </div>
 
             <!-- Pagination -->
-
-
                 {{ knp_pagination_render(pagination, 'inc/pagination.html.twig') }}
 
 

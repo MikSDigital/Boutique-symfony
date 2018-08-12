@@ -25,7 +25,7 @@
          <div class="form-group">
              <div class="custom-file">
                 {{ form_label(addProduct.imageFile, 'Images', {'attr': {'class': 'custom-file-label'}}) }}
-                {{ form_widget(addProduct.imageFile) }}
+                {{ form_widget(addProduct.imageFile, {'required': 'true'}) }}
              </div>
          </div>
         <div class="form-group">

@@ -43,21 +43,21 @@
 
             <div class="row isotope-grid">
 
-            {% for product in products %}
+            {% for product in pagination %}
                 <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ product.category }}">
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-pic hov-img0">
                             <img src="{{ asset('images/products/'~product.imageName) }}" alt="{{ product.imageName }}" height="390" width="315">
 
-                            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                            <a href="#" class="block2-btn flex-c-m stext-103 cl3 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                 Voir un apperçu
                             </a>
                         </div>
 
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l ">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                <a href="{{ path('show-product-front', {id: product.id}) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                     {{ product.name }}
                                 </a>
 
@@ -73,15 +73,9 @@
             </div>
 
             <!-- Pagination -->
-            <div class="flex-c-m flex-w w-full p-t-38">
-                <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
-                    1
-                </a>
+            {{ knp_pagination_render(pagination, 'inc/pagination.html.twig') }}
 
-                <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
-                    2
-                </a>
-            </div>
+
         </div>
     </div>
 

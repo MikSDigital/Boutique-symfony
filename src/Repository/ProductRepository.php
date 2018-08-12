@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -46,13 +47,35 @@ class ProductRepository extends ServiceEntityRepository
      * @return Product|null
      * @throws \Exception
      */
-    public function findBySlider() {
+    public function findBySlider()
+    {
 
         $query = $this->createQueryBuilder('p')
             ->select('p')
             ->orderBy('RAND()', 'DESC')
             ->setMaxResults(3)
             ->getQuery();
+
+        try {
+            return $query->getResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème' . $e->getMessage(). $e->getFile(). $e->getLine(). $e->getCode());
+        }
+    }
+
+    /**
+     * @return Product|null
+     * @throws \Exception
+     */
+    public function findProductByCategory() {
+
+        $query = $this->createQueryBuilder('p')
+        ->select('p')
+        ->orderBy('RAND()', 'ASC')
+        ->setMaxResults(8)
+        ->getQuery()
+        ;
 
         try {
             return $query->getResult();
