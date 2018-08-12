@@ -136,7 +136,7 @@ class BackController extends Controller
             $manager->flush();
 
             $this->addFlash('product', 'Le produits à bien été ajouté');
-            return $this->redirectToRoute('index_back_office');
+            return $this->redirectToRoute('listes-product');
         }
 
         return $this->render('back/CRUD/add-product.html.twig', [
@@ -163,7 +163,7 @@ class BackController extends Controller
             $manager = $this->getDoctrine()->getManager();
             $manager->flush();
             $this->addFlash('product', 'Le produit ç bien été modifié');
-            return $this->redirectToRoute('index_back_office');
+            return $this->redirectToRoute('show-product', ['id' => $product->getId()]);
         }
 
         return $this->render('back/CRUD/edit-product.html.twig', [

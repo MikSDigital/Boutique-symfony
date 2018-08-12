@@ -20,8 +20,9 @@ class FrontController extends Controller
     public function index(Request $request): Response {
 
         $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT p FROM App:Product p";
+        $dql   = "SELECT p FROM App:Product p WHERE p.isPublished = :boolean";
         $query = $em->createQuery($dql);
+        $query->setParameter('boolean', '1');
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -67,8 +68,9 @@ class FrontController extends Controller
     public function shop(Request $request): Response {
 
         $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT p FROM App:Product p";
+        $dql   = "SELECT p FROM App:Product p WHERE p.isPublished = :boolean";
         $query = $em->createQuery($dql);
+        $query->setParameter('boolean', '1');
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -95,13 +97,26 @@ class FrontController extends Controller
     public function showProduct(int $id): Response {
 
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
-
         $productInCategory = $this->getDoctrine()->getRepository(Product::class)->findProductByCategory();
 
         return $this->render('front/product.html.twig', [
             'title' => '',
             'showProduct' => $product,
             'showProductInCategory' => $productInCategory
+        ]);
+    }
+
+    /**
+     * @Route("/produits-views/", name="product-views", methods="GET")
+     * @param int $id
+     * @return Response
+     */
+    public function viewsProduct(int $id): Response {
+
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+
+        return $this->render('inc/views-product.html.twig', [
+            'productViews' => $product
         ]);
     }
 

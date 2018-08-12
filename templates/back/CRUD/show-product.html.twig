@@ -5,7 +5,9 @@
 {% block body %}
     <div class="container">
         <h1>Fiches produits</h1>
-
+        <a href="{{ path('edit-product', {id: showProduct.id}) }}" class="btn btn-success">Modifier le produit</a>
+        <br>
+        <br>
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Nom : {{ showProduct.name }}</h5>
