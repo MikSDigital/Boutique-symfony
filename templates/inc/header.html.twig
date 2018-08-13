@@ -110,7 +110,8 @@
         <ul class="topbar-mobile">
             <li>
                 <div class="left-top-bar">
-                    message dynamique
+                    {{ render(controller('App\\Controller\\FrontController::randomMessage'
+                    )) }}
                 </div>
             </li>
 

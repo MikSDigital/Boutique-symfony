@@ -45,6 +45,18 @@ class ProductType extends AbstractType
                 ],
                 'required' => false
             ])
+            ->add('imageFile2', FileType::class, [
+                'attr' => [
+                    'class' => 'custom-file-input'
+                ],
+                'required' => false
+            ])
+            ->add('imageFile3', FileType::class, [
+                'attr' => [
+                    'class' => 'custom-file-input'
+                ],
+                'required' => false
+            ])
             ->add('category', null, [
                 'attr' => [
                     'class' => 'form-control'

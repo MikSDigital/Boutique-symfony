@@ -29,6 +29,18 @@
              </div>
          </div>
         <div class="form-group">
+            <div class="custom-file">
+                {{ form_label(addProduct.imageFile2, 'Images2', {'attr': {'class': 'custom-file-label'}}) }}
+                {{ form_widget(addProduct.imageFile2, {'required': 'true'}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="custom-file">
+                {{ form_label(addProduct.imageFile3, 'Images3', {'attr': {'class': 'custom-file-label'}}) }}
+                {{ form_widget(addProduct.imageFile3, {'required': 'true'}) }}
+            </div>
+        </div>
+        <div class="form-group">
             {{ form_label(addProduct.category, 'Catégorie') }}
             {{ form_widget(addProduct.category) }}
         </div>
