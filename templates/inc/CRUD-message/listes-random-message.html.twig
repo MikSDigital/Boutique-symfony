@@ -1,0 +1,65 @@
+{% extends 'back/base.html.twig' %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+<div class="container">
+    <h1>Listes de vos méssages</h1>
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Messages</th>
+            <th scope="col">
+                <a href="{{ path('add-random-message-back') }}">
+                Ajouter un message
+                </a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for message in showMessage %}
+            <tr class="table-primary">
+                <th scope="row"> {{ message.id }}</th>
+                <td> {{ message.content }}</td>
+                <td>
+                    <a href="{{ path('edit-random-message', {id: message.id}) }}" class="btn btn-success">Modifier</a>
+                    <a href="{{ path('delete-random-message', {id: message.id}) }}" class="btn btn-danger delete" data-confirm="Voulez vous vraiment supprimer cette catégorie ?">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+        <h2>Explication sur le système de méssage du jour.</h2>
+    <p class="font-weight-bold">Cette section va vous expliquer comment marche les méssages du jour.</p>
+
+    <p class="font-weight-bold">Vous pouvez ajouter autant de méssage que vous le voulez il 'afficheront juste ici :</p>
+    <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg">
+      <figure class="figure">
+        <img src="{{ asset('/images/message.png') }}" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+        <figcaption class="figure-caption">Exemples d'un méssage.</figcaption>
+       </figure>
+    </a>
+
+
+
+    <p class="font-weight-bold">Les méssages seront alétoire c'est à a dire que à chaque fois que vous recharger une page il y aura un nouveau méssage qui s'affichera, ajouter vos promotions du moment vos slodes etc.</p>
+
+
+    <!-- Large modal -->
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+                <figure class="text-center">
+                <img src="{{ asset('/images/message.png') }}" height="352" width="1175" class="fimg-fluid" alt="A generic square placeholder image with rounded corners in a figure.">
+                </figure>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

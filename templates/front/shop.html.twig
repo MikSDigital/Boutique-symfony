@@ -13,7 +13,7 @@
                         All Products
                     </button>
                     {% for category in categories %}
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{ category.name }}">
+                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{ category.id }}">
                         {{ category.name }}
                     </button>
                     {% endfor %}
@@ -44,7 +44,7 @@
             <div class="row isotope-grid">
 
             {% for product in pagination %}
-                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ product.category }}">
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ product.category.id }}">
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-pic hov-img0">
@@ -57,7 +57,7 @@
 
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l ">
-                                <a href="{{ path('show-product-front', {id: product.id}) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                <a href="{{ path('show-product-front', {slug: product.slug}) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                     {{ product.name }}
                                 </a>
 

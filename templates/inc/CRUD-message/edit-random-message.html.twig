@@ -1,0 +1,25 @@
+{% extends 'back/base.html.twig' %}
+
+{% form_theme editMessage 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h1>Ajouter votre méssage </h1>
+
+        {{ form_start(editMessage) }}
+        <div class="form-group">
+            {{ form_label(editMessage.content, 'Contenue du message') }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(editMessage.content) }}
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" type="submit">Modifié</button>
+        </div>
+        {{ form_end(editMessage) }}
+
+    </div>
+
+{% endblock %}

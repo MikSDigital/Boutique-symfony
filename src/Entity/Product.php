@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
@@ -50,6 +51,12 @@ class Product
      * @ORM\Column(type="string", length=255)
      */
     private $reference;
+
+    /**
+     * @Gedmo\Slug(fields={"name"},separator="-", updatable=true, unique=true)
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="product", cascade={"persist"})
@@ -195,6 +202,11 @@ class Product
         $this->category = $category;
 
         return $this;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**

@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Entity\RandomMessage;
 use App\Form\CategoryType;
 use App\Form\ProductType;
+use App\Form\RandomMessageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -199,6 +201,90 @@ class BackController extends Controller
         return $this->render('back/CRUD/show-product.html.twig', [
             'title' => '',
             'showProduct' => $product
+        ]);
+    }
+
+    /**
+     * @Route("/message-dynamique/ajouter", name="add-random-message-back", methods="POST|GET")
+     * @param Request $request
+     * @return Response
+     */
+    public function addRandomMessage(Request $request): Response {
+
+        $message = new RandomMessage();
+        $addMessage = $this->createForm(RandomMessageType::class, $message);
+        $addMessage->handleRequest($request);
+
+        if($addMessage->isSubmitted() && $addMessage->isValid()) {
+
+            $message = $addMessage->getData();
+            $addMessage = $this->getDoctrine()->getManager();
+            $addMessage->persist($message);
+            $addMessage->flush();
+
+            $this->addFlash('randomMessage', 'Le message à bien été ajouté');
+            return $this->redirectToRoute('index_back_office');
+        }
+
+        return $this->render('inc/CRUD-message/add-random-message.html.twig', [
+            'title' => 'Ajouter un message à diffuser a vos utilisateurs',
+            'addMessage' => $addMessage->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/message-dynamique/modifier/{id}", name="edit-random-message", methods="POST|GET")
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
+    public function editRandomMessage(Request $request, int $id): Response {
+
+        $message = $this->getDoctrine()->getRepository(RandomMessage::class)->find($id);
+        $editMessage = $this->createForm(RandomMessageType::class, $message);
+        $editMessage->handleRequest($request);
+
+        if($editMessage->isSubmitted() && $editMessage->isValid()) {
+
+            $message = $editMessage->getData();
+            $editMessage = $this->getDoctrine()->getManager();
+            $editMessage->flush();
+            $this->addFlash('randomMessage', 'Le message à bien été changer');
+            return $this->redirectToRoute('index_back_office');
+        }
+
+        return $this->render('inc/CRUD-message/edit-random-message.html.twig', [
+            'title' => 'Modifier votre message',
+            'editMessage' => $editMessage->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/message-dynamique/supprimer/{id}", name="delete-random-message", methods="GET")
+     * @param int $id
+     * @return Response
+     */
+    public function deleteRandomMessage(int $id): Response {
+
+        $message = $this->getDoctrine()->getRepository(RandomMessage::class)->find($id);
+        $deleteMessage = $this->getDoctrine()->getManager();
+        $deleteMessage->remove($message);
+        $deleteMessage->flush();
+        $this->addFlash('delete', 'Le méssage à bien été supprimé');
+        return $this->redirectToRoute('index_back_office');
+    }
+
+    /**
+     * @Route("/listes-message-dynamique/", name="random-message-back", methods="GET")
+     * @return Response
+     */
+    public function randMessage(): Response {
+
+        $message = $this->getDoctrine()->getRepository(RandomMessage::class)->findAll();
+
+        return $this->render('/inc/CRUD-message/listes-random-message.html.twig', [
+            'title' => 'Listes de vos message',
+            'showMessage' => $message
         ]);
     }
 

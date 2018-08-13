@@ -202,7 +202,6 @@
         </div>
     </section>
 
-
     <!-- Related Products -->
     <section class="sec-relate-product bg0 p-t-45 p-b-105">
         <div class="container">
@@ -229,7 +228,7 @@
 
                             <div class="block2-txt flex-w flex-t p-t-14">
                                 <div class="block2-txt-child1 flex-col-l ">
-                                    <a href="{{ path('show-product-front', {id: productCategory.id}) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    <a href="{{ path('show-product-front', {slug: productCategory.slug}) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                         {{ productCategory.name }}
                                     </a>
 
@@ -240,7 +239,7 @@
                             </div>
                         </div>
                     </div>
-{% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>

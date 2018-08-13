@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Entity\RandomMessage;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,21 +47,6 @@ class FrontController extends Controller
     }
 
     /**
-     * @Route("/trois-produits", name="three-product", methods="GET")
-     * @return Response
-     */
-    public function threeProduct(): Response {
-
-        $repository = $this->getDoctrine()->getRepository(Product::class);
-        $threeProduct = $repository->findByThreeProduct();
-
-        return $this->render('inc/three-product.html.twig', [
-            'title' => '',
-            'threeProduct' => $threeProduct
-        ]);
-    }
-
-    /**
      * @Route("/boutique", name="shop", methods="GET")
      * @param Request $request
      * @return Response
@@ -89,14 +75,31 @@ class FrontController extends Controller
         ]);
     }
 
+
     /**
-     * @Route("/produits/{id}", name="show-product-front", methods="GET")
-     * @param int $id
+     * @Route("/trois-produits", name="three-product", methods="GET")
      * @return Response
      */
-    public function showProduct(int $id): Response {
+    public function threeProduct(): Response {
 
-        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $threeProduct = $repository->findByThreeProduct();
+
+        return $this->render('inc/three-product.html.twig', [
+            'title' => '',
+            'threeProduct' => $threeProduct
+        ]);
+    }
+
+
+    /**
+     * @Route("/produits/{slug}", name="show-product-front", methods="GET")
+     * @param string $slug
+     * @return Response
+     */
+    public function showProduct(string $slug): Response {
+
+        $product = $this->getDoctrine()->getRepository(Product::class)->findOneWithCategorySlug($slug);
         $productInCategory = $this->getDoctrine()->getRepository(Product::class)->findProductByCategory();
 
         return $this->render('front/product.html.twig', [
@@ -117,6 +120,20 @@ class FrontController extends Controller
 
         return $this->render('inc/views-product.html.twig', [
             'productViews' => $product
+        ]);
+    }
+
+    /**
+     * @Route("/message-dynamique/", name="random-message-front", methods="GET")
+     * @return Response
+     */
+    public function randomMessage(): Response {
+
+        $randomMessage = $this->getDoctrine()->getRepository(RandomMessage::class)->findByMessage();
+
+        return $this->render('inc/random-message.html.twig', [
+            'title' => '',
+            'randomMessage' => $randomMessage
         ]);
     }
 

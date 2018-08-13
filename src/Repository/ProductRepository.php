@@ -85,4 +85,28 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @param string $slug
+     * @return Product|null
+     * @throws \Exception
+     */
+    public function findOneWithCategorySlug(string $slug): ?Product {
+
+        $query = $this->createQueryBuilder('p')
+            ->join('p.category', 'c')
+            ->addSelect('c')
+            ->where('p.slug = :slug')
+            ->setParameter(':slug', $slug)
+            ->getQuery()
+        ;
+
+        try {
+            return $query->getOneOrNullResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème dans ArticlesRepository::findOneWithCategorySlug' . $e->getMessage() . var_dump($e));
+        }
+
+    }
+
 }

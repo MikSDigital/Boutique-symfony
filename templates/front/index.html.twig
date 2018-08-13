@@ -11,19 +11,19 @@
                     <div class="container h-full">
                         <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                             <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
+								<span class="ltext-101 cl1 respon2">
 									{{ slider.category }}
 								</span>
                             </div>
 
                             <div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
-                                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+                                <h2 class="ltext-201 cl1 p-t-19 p-b-43 respon1">
                                     {{ slider.name}}
                                 </h2>
                             </div>
 
                             <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-                                <a href="{{ path('show-product-front', {id: slider.id}) }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                <a href="{{ path('show-product-front', {slug: slider.slug}) }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
                                     Voir le produit
                                 </a>
                             </div>
@@ -54,7 +54,7 @@
                         All Products
                     </button>
                     {% for category in categories %}
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{ category.name }}">
+                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{ category.id }}">
                         {{ category.name }}
                     </button>
                     {% endfor %}
@@ -87,7 +87,7 @@
             <div class="row isotope-grid">
 
             {% for product in pagination %}
-                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ product.category }}">
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ product.category.id }}">
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-pic hov-img0">
@@ -99,7 +99,7 @@
 
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l ">
-                                <a href="{{ path('show-product-front', {id: product.id}) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                <a href="{{ path('show-product-front', {slug: product.slug}) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                     {{ product.name }}
                                 </a>
 
