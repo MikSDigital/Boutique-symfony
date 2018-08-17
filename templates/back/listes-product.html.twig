@@ -64,28 +64,28 @@
         </table>
 
 </div>
-
 <script>
-
-    $('#sub2').on('click', function(){
-        // J'initialise le variable box
-        var box = $('#resultat');
-        // Je définis ma requête ajax
-        $.ajax({
-            // Adresse à laquelle la requête est envoyée
-            url: '{{ path('show-product', {id: showProduct.id}) }}',
-            type: 'GET',
-            // La fonction à apeller si la requête aboutie
-            success: function (data) {
-                // Je charge les données dans box
-                box.html(data);
-                document.getElementById('para').innerHTML = "<p>Retour à la listes des produit <a href='{{ path('listes-product') }}'>ici</p></p>";
-            },
-            // La fonction à appeler si la requête n'a pas abouti
-            error: function() {
-                // J'affiche un message d'erreur
-                box.html("Désolé, aucun résultat trouvé.");
-            }
+    $(document).ready(function () {
+        $('#sub2').on('click', function(){
+            // J'initialise le variable box
+            var box = $('#resultat');
+            // Je définis ma requête ajax
+            $.ajax({
+                // Adresse à laquelle la requête est envoyée
+                url: '{{ path("show-product", {id: 3}) }}',
+                type: 'GET',
+                // La fonction à apeller si la requête aboutie
+                success: function (data) {
+                    // Je charge les données dans box
+                    box.html(data);
+                    document.getElementById('para').innerHTML = "<p>Retour à la listes des produit <a href='{{ path('listes-product') }}'>ici</p></p>";
+                },
+                // La fonction à appeler si la requête n'a pas abouti
+                error: function() {
+                    // J'affiche un message d'erreur
+                    box.html("<p>Désolé, aucun résultat trouvé.</p>");
+                }
+            });
         });
     });
 </script>

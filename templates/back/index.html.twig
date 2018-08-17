@@ -1,7 +1,7 @@
 {% extends 'back/base.html.twig' %}
 
 {% block body %}
-    <div class="container">
+    <div class="container" id="jumbotron">
 
         <div class="jumbotron">
             <h1 class="display-3 h1">Bienvenue dans l'espace d'administration</h1>
@@ -13,14 +13,34 @@
                 <a class="btn btn-primary btn-lg" href="{{ path('index') }}" role="button" target="_blank">Accedez à la boutique</a>
                 <a class="btn btn-primary btn-lg" href="{{ path('random-message-back') }}" role="button">Accedez à vos message du jour</a>
             </p>
+            <button class="btn btn-success" id="sub" type="submit">test</button>
         </div>
 
+    </div>
         <div id="resultat">
 
         </div>
-
-
-
-    </div>
-
+<script>
+    $('#sub').on('click', function(){
+        // J'initialise le variable box
+        var box = $('#resultat');
+        // Je définis ma requête ajax
+        $.ajax({
+            // Adresse à laquelle la requête est envoyée
+            url: '{{ path("listes-product") }}',
+            type: 'GET',
+            // La fonction à apeller si la requête aboutie
+            success: function (data) {
+                // Je charge les données dans box
+                box.html(data);
+                document.getElementById('jumbotron').innerHTML = "<p>Retour à la listes des produit <a href='{{ path('listes-product') }}'>ici</p></p>";
+            },
+            // La fonction à appeler si la requête n'a pas abouti
+            error: function() {
+                // J'affiche un message d'erreur
+                box.html("Désolé, aucun résultat trouvé.");
+            }
+        });
+    });
+</script>
 {% endblock %}
