@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ title }}</title>
     <link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.png') }}"/>
+    <script src="{{ asset('backOffice/js/jquery-3.3.1.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('backOffice/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backOffice/css/style.css') }}">
 </head>
@@ -81,5 +82,30 @@
 <script src="{{ asset('backOffice/js/popper.js') }}"></script>
 <script src="{{ asset('backOffice/js/bootstrap.js') }}"></script>
 <script src="{{ asset('backOffice/js/app.js') }}"></script>
+<script>
+
+
+    $('#sub').on('click', function(){
+        // J'initialise le variable box
+        var box = $('#resultat');
+        // Je définis ma requête ajax
+        $.ajax({
+            // Adresse à laquelle la requête est envoyée
+            url: '{{ path('listes-product') }}',
+            type: 'GET',
+            // La fonction à apeller si la requête aboutie
+            success: function (data) {
+                // Je charge les données dans box
+                box.html(data);
+            },
+            // La fonction à appeler si la requête n'a pas abouti
+            error: function() {
+                // J'affiche un message d'erreur
+                box.html("Désolé, aucun résultat trouvé.");
+            }
+        });
+    });
+
+</script>
 </body>
 </html>

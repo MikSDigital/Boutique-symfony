@@ -5,6 +5,7 @@ use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\RandomMessage;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -135,6 +136,18 @@ class FrontController extends Controller
             'title' => '',
             'randomMessage' => $randomMessage
         ]);
+    }
+
+    /**
+     * @Route("/json", name="test", methods="GET")
+     * @param JsonResponse
+     * @return JsonResponse
+     */
+    public function jsonTest(): JsonResponse {
+        $repositoryCategory = $this->getDoctrine()->getRepository(Category::class);
+        $category = $repositoryCategory->findAll();
+
+        return new JsonResponse($category);
     }
 
     /**

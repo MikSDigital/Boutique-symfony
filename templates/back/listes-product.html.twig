@@ -8,7 +8,11 @@
 <div class="container-fluid">
         <h1 class="text-center">Listes de tous les produits</h1>
 
-        <table class="table table-hover">
+        <div id="resultat">
+
+        </div>
+
+        <table id="para" class="table table-hover">
             <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -29,6 +33,7 @@
             </thead>
             <tbody>
             {% for product in products %}
+
             <tr class="table-primary">
                 <th scope="row">{{ product.id }}</th>
                 <td>
@@ -52,6 +57,7 @@
                     <a href="{{ path('edit-product', {id: product.id}) }}" class="btn btn-success">Modifier</a>
                     <a href="{{ path('delete-product', {id: product.id}) }}" class="btn btn-danger delete" data-confirm="Voulez vous vraiment supprimer cette catégorie ?">Supprimer</a>
                 </td>
+                <td id="sub2">test</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -59,5 +65,29 @@
 
 </div>
 
+<script>
+
+    $('#sub2').on('click', function(){
+        // J'initialise le variable box
+        var box = $('#resultat');
+        // Je définis ma requête ajax
+        $.ajax({
+            // Adresse à laquelle la requête est envoyée
+            url: '{{ path('show-product', {id: showProduct.id}) }}',
+            type: 'GET',
+            // La fonction à apeller si la requête aboutie
+            success: function (data) {
+                // Je charge les données dans box
+                box.html(data);
+                document.getElementById('para').innerHTML = "<p>Retour à la listes des produit <a href='{{ path('listes-product') }}'>ici</p></p>";
+            },
+            // La fonction à appeler si la requête n'a pas abouti
+            error: function() {
+                // J'affiche un message d'erreur
+                box.html("Désolé, aucun résultat trouvé.");
+            }
+        });
+    });
+</script>
 
 {% endblock %}
