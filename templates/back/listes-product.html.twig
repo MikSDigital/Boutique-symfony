@@ -28,7 +28,6 @@
                     Ajouter un produit
                     </a>
                 </th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -53,41 +52,15 @@
                 <td>{{ product.reference }}</td>
                 <td>{{ product.category}}</td>
                 <td>
-                    <a href="{{ path('show-product', {id: product.id}) }}" class="btn btn-info">Voir</a>
+                    <a href="{{ path('show-product', {id: product.id}) }}" id="show-product-link" class="btn btn-info">Voir</a>
                     <a href="{{ path('edit-product', {id: product.id}) }}" class="btn btn-success">Modifier</a>
                     <a href="{{ path('delete-product', {id: product.id}) }}" class="btn btn-danger delete" data-confirm="Voulez vous vraiment supprimer cette catégorie ?">Supprimer</a>
                 </td>
-                <td id="sub2">test</td>
             </tr>
             {% endfor %}
             </tbody>
         </table>
 
 </div>
-<script>
-    $(document).ready(function () {
-        $('#sub2').on('click', function(){
-            // J'initialise le variable box
-            var box = $('#resultat');
-            // Je définis ma requête ajax
-            $.ajax({
-                // Adresse à laquelle la requête est envoyée
-                url: '{{ path("show-product", {id: 3}) }}',
-                type: 'GET',
-                // La fonction à apeller si la requête aboutie
-                success: function (data) {
-                    // Je charge les données dans box
-                    box.html(data);
-                    document.getElementById('para').innerHTML = "<p>Retour à la listes des produit <a href='{{ path('listes-product') }}'>ici</p></p>";
-                },
-                // La fonction à appeler si la requête n'a pas abouti
-                error: function() {
-                    // J'affiche un message d'erreur
-                    box.html("<p>Désolé, aucun résultat trouvé.</p>");
-                }
-            });
-        });
-    });
-</script>
 
 {% endblock %}

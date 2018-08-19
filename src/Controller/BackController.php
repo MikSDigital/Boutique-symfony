@@ -205,7 +205,7 @@ class BackController extends Controller
     }
 
     /**
-     * @Route("/message-dynamique/ajouter", name="add-random-message-back", methods="POST|GET")
+     * @Route("/message-dynamique/ajouter", name="add-random-message-back", methods="GET|POST")
      * @param Request $request
      * @return Response
      */
@@ -223,7 +223,7 @@ class BackController extends Controller
             $addMessage->flush();
 
             $this->addFlash('randomMessage', 'Le message à bien été ajouté');
-            return $this->redirectToRoute('index_back_office');
+            return $this->redirectToRoute('random-message-back');
         }
 
         return $this->render('inc/CRUD-message/add-random-message.html.twig', [
@@ -250,7 +250,7 @@ class BackController extends Controller
             $editMessage = $this->getDoctrine()->getManager();
             $editMessage->flush();
             $this->addFlash('randomMessage', 'Le message à bien été changer');
-            return $this->redirectToRoute('index_back_office');
+            return $this->redirectToRoute('random-message-back');
         }
 
         return $this->render('inc/CRUD-message/edit-random-message.html.twig', [
@@ -271,20 +271,37 @@ class BackController extends Controller
         $deleteMessage->remove($message);
         $deleteMessage->flush();
         $this->addFlash('delete', 'Le méssage à bien été supprimé');
-        return $this->redirectToRoute('index_back_office');
+        return $this->redirectToRoute('random-message-back');
     }
 
     /**
-     * @Route("/listes-message-dynamique/", name="random-message-back", methods="GET")
+     * @Route("/listes-message-dynamique/", name="random-message-back", methods="GET|POST")
+     * @param Request $request
      * @return Response
      */
-    public function randMessage(): Response {
+    public function randMessage(Request $request): Response {
 
-        $message = $this->getDoctrine()->getRepository(RandomMessage::class)->findAll();
+        $messageFind = $this->getDoctrine()->getRepository(RandomMessage::class)->findAll();
+
+        $message = new RandomMessage();
+        $addMessage = $this->createForm(RandomMessageType::class, $message);
+        $addMessage->handleRequest($request);
+
+        if($addMessage->isSubmitted() && $addMessage->isValid()) {
+
+            $message = $addMessage->getData();
+            $addMessage = $this->getDoctrine()->getManager();
+            $addMessage->persist($message);
+            $addMessage->flush();
+
+            $this->addFlash('randomMessage', 'Le message à bien été ajouté');
+            return $this->redirectToRoute('random-message-back');
+        }
 
         return $this->render('/inc/CRUD-message/listes-random-message.html.twig', [
             'title' => 'Listes de vos message',
-            'showMessage' => $message
+            'showMessage' => $messageFind,
+            'addMessage' => $addMessage->createView()
         ]);
     }
 
