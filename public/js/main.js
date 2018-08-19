@@ -277,6 +277,27 @@
         $('.js-modal1').removeClass('show-modal1');
     });
 
+    $("#lecture").on('click', function (e) {
+        e.preventDefault();
+        var reslut = document.getElementById('');
+        var box = $('#zone');
 
+        $.ajax({
+            url: '/json',
+            type: 'GET',
+            data: 'json',
+            dataType: 'json',
+            success: function (data) {
+                box.html(data);
+                $.get( "/json", function( data ) {
+                    $.parseJSON(data);
+                    $( "#zone" ).html(data);
+                });
+            },
+            error: function () {
+                box.html("Désolé, aucun résultat trouvé.");
+            }
+        });
+    });
 
 })(jQuery);

@@ -11,7 +11,7 @@
 
     <h1>Ajouter un méssage qui s'affichera aléatoirement a votre boutique</h1>
 
-    {{ form_start(addMessage) }}
+    {{ form_start(addMessage, {'attr': {'id': 'form'}}) }}
     <div class="form-group">
         {{ form_label(addMessage.content, 'Contenue du message') }}
     </div>
@@ -24,6 +24,10 @@
     {{ form_end(addMessage) }}
 
     <h1>Listes de vos méssages</h1>
+    <div id="message"></div>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="ajax-loading">
+        <strong>Chargement en cours!</strong>
+    </div>
     <br>
     <table class="table table-hover">
         <thead>
@@ -75,4 +79,35 @@
     </div>
 
 </div>
+
+
+    <script>
+
+        $(document).ready(function(){
+            $('#ajax-loading').hide();
+            $("#form").submit(function(){
+                $('#ajax-loading').show();
+                $.ajax({type:"POST", data: $(this).serialize(), url:"/admin/listes-message-dynamique/",
+                    success: function(data){
+                        $("#category").html(data);
+                        $.get( "/admin/listes-message-dynamique/", function( data ) {
+                            $( "#resultat" ).html( data );
+                            $("#message").html(" <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n" +
+                                "             La catégorie à bien été ajouté \n" +
+                                "             <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                                "                 <span aria-hidden=\"true\">&times;</span>\n" +
+                                "             </button>\n" +
+                                "         </div>");
+                        });
+                    },
+                    error: function(){
+                        $("#category").html('Une erreur est survenue.');
+                    }
+                });
+                return false;
+            });
+        });
+
+    </script>
+
 {% endblock %}

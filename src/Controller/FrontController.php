@@ -147,7 +147,9 @@ class FrontController extends Controller
         $repositoryCategory = $this->getDoctrine()->getRepository(Category::class);
         $category = $repositoryCategory->findAll();
 
-        return new JsonResponse($category);
+        $response = new JsonResponse();
+        return $response->setData(array('category' => $category));
+
     }
 
     /**
