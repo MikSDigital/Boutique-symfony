@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ab0ed05-7b1c-4747-9988-d0dc4c734275" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/BackController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BackController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back/CRUD/add-category.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back/CRUD/add-category.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/back/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back/listes-product.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back/listes-product.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/CRUD-message/add-random-message.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/CRUD-message/add-random-message.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/CRUD-message/listes-random-message.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/CRUD-message/listes-random-message.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +39,7 @@
           <entry key="phpunit" value="1" />
           <entry key="rnc" value="1" />
           <entry key="ts" value="2" />
-          <entry key="twig" value="145" />
+          <entry key="twig" value="146" />
           <entry key="yaml" value="25" />
         </counts>
       </usages-collector>
@@ -58,7 +52,7 @@
           <entry key="Markdown" value="2" />
           <entry key="PHP" value="140" />
           <entry key="RNG Compact" value="1" />
-          <entry key="Twig" value="145" />
+          <entry key="Twig" value="146" />
           <entry key="TypeScript" value="2" />
           <entry key="YAML" value="25" />
         </counts>
@@ -69,7 +63,7 @@
           <entry key="env" value="4" />
           <entry key="js" value="27" />
           <entry key="php" value="7662" />
-          <entry key="twig" value="8121" />
+          <entry key="twig" value="8123" />
           <entry key="yaml" value="254" />
         </counts>
       </usages-collector>
@@ -79,7 +73,7 @@
           <entry key="CSS" value="9" />
           <entry key="JavaScript" value="27" />
           <entry key="PHP" value="7662" />
-          <entry key="Twig" value="8121" />
+          <entry key="Twig" value="8123" />
           <entry key="YAML" value="254" />
         </counts>
       </usages-collector>
@@ -102,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/BackController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="303" column="52" selection-start-line="303" selection-start-column="52" selection-end-line="303" selection-end-column="52" />
+            <state relative-caret-position="-147">
+              <caret line="204" column="5" selection-start-line="204" selection-start-column="5" selection-end-line="204" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -118,9 +112,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/back/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/inc/CRUD-message/listes-random-message.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
+            <state relative-caret-position="-1035">
               <caret line="2" column="58" selection-start-line="2" selection-start-column="58" selection-end-line="2" selection-end-column="58" />
             </state>
           </provider>
@@ -187,13 +190,13 @@
         <option value="$PROJECT_DIR$/public/backOffice/js/app.js" />
         <option value="$PROJECT_DIR$/src/Form/CategoryType.php" />
         <option value="$PROJECT_DIR$/config/packages/twig.yaml" />
-        <option value="$PROJECT_DIR$/templates/back/base.html.twig" />
         <option value="$PROJECT_DIR$/templates/back/CRUD/add-category.html.twig" />
         <option value="$PROJECT_DIR$/templates/back/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/back/listes-product.html.twig" />
         <option value="$PROJECT_DIR$/templates/inc/CRUD-message/add-random-message.html.twig" />
-        <option value="$PROJECT_DIR$/src/Controller/BackController.php" />
         <option value="$PROJECT_DIR$/templates/inc/CRUD-message/listes-random-message.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/BackController.php" />
+        <option value="$PROJECT_DIR$/templates/back/base.html.twig" />
       </list>
     </option>
   </component>
@@ -456,12 +459,12 @@
       <workItem from="1534472864990" duration="14396000" />
       <workItem from="1534494932112" duration="4879000" />
       <workItem from="1534655541032" duration="404000" />
-      <workItem from="1534698499836" duration="6929000" />
+      <workItem from="1534698499836" duration="7768000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162058000" />
+    <option name="totallyTimeSpent" value="162897000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -782,13 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/back/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/back/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="474">
@@ -813,6 +809,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/inc/CRUD-message/listes-random-message.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1035">
+          <caret line="2" column="58" selection-start-line="2" selection-start-column="58" selection-end-line="2" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/BackController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-147">
+          <caret line="204" column="5" selection-start-line="204" selection-start-column="5" selection-end-line="204" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/inc/CRUD-message/add-random-message.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -820,17 +830,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/BackController.php">
+    <entry file="file://$PROJECT_DIR$/templates/back/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="303" column="52" selection-start-line="303" selection-start-column="52" selection-end-line="303" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/inc/CRUD-message/listes-random-message.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="58" selection-start-line="2" selection-start-column="58" selection-end-line="2" selection-end-column="58" />
+        <state relative-caret-position="391">
+          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
         </state>
       </provider>
     </entry>

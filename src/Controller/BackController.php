@@ -205,34 +205,6 @@ class BackController extends Controller
     }
 
     /**
-     * @Route("/message-dynamique/ajouter", name="add-random-message-back", methods="GET|POST")
-     * @param Request $request
-     * @return Response
-     */
-    public function addRandomMessage(Request $request): Response {
-
-        $message = new RandomMessage();
-        $addMessage = $this->createForm(RandomMessageType::class, $message);
-        $addMessage->handleRequest($request);
-
-        if($addMessage->isSubmitted() && $addMessage->isValid()) {
-
-            $message = $addMessage->getData();
-            $addMessage = $this->getDoctrine()->getManager();
-            $addMessage->persist($message);
-            $addMessage->flush();
-
-            $this->addFlash('randomMessage', 'Le message à bien été ajouté');
-            return $this->redirectToRoute('random-message-back');
-        }
-
-        return $this->render('inc/CRUD-message/add-random-message.html.twig', [
-            'title' => 'Ajouter un message à diffuser a vos utilisateurs',
-            'addMessage' => $addMessage->createView()
-        ]);
-    }
-
-    /**
      * @Route("/message-dynamique/modifier/{id}", name="edit-random-message", methods="POST|GET")
      * @param int $id
      * @param Request $request
