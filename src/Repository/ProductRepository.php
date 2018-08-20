@@ -104,8 +104,33 @@ class ProductRepository extends ServiceEntityRepository
             return $query->getOneOrNullResult();
         }
         catch (\Exception $e) {
-            throw new \Exception('Problème dans ArticlesRepository::findOneWithCategorySlug' . $e->getMessage() . var_dump($e));
+            throw new \Exception('Problème ' . $e->getMessage() . var_dump($e));
         }
+
+    }
+
+    /**
+     * @param string $value
+     * @return Product|null
+     * @throws \Exception
+     */
+    public function findBySearch(String $value): ?Product {
+        // SELECT * FROM product WHERE name LIKE "%iphone%" OR description LIKE "%iphone%"
+        $query = $this->createQueryBuilder('r')
+            ->select('r')
+            ->where('r.name LIKE = :value')
+            ->orWhere('r.description LIKE = :value')
+            ->setParameter(':value', '%' .$value. '%')
+            ->getQuery()
+        ;
+
+        try {
+            return $query->getResult();
+        }
+        catch (\Exception $e) {
+            throw new \Exception('Problème' . $e->getMessage(). $e->getFile(). $e->getLine(). $e->getCode());
+        }
+
 
     }
 
