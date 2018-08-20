@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6ab0ed05-7b1c-4747-9988-d0dc4c734275" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FrontController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/back/CRUD/add-category.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/back/CRUD/add-category.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/about.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/about.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/CRUD-message/listes-random-message.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/CRUD-message/listes-random-message.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/css.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/css.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PanierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PanierController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,14 +32,14 @@
         <counts>
           <entry key="css" value="12" />
           <entry key="env" value="2" />
-          <entry key="html" value="4" />
+          <entry key="html" value="6" />
           <entry key="js" value="21" />
           <entry key="md" value="2" />
           <entry key="php" value="156" />
           <entry key="phpunit" value="1" />
           <entry key="rnc" value="1" />
           <entry key="ts" value="3" />
-          <entry key="twig" value="156" />
+          <entry key="twig" value="158" />
           <entry key="yaml" value="25" />
         </counts>
       </usages-collector>
@@ -52,12 +47,12 @@
         <counts>
           <entry key=".env file" value="2" />
           <entry key="CSS" value="12" />
-          <entry key="HTML" value="4" />
+          <entry key="HTML" value="6" />
           <entry key="JavaScript" value="21" />
           <entry key="Markdown" value="2" />
           <entry key="PHP" value="157" />
           <entry key="RNG Compact" value="1" />
-          <entry key="Twig" value="156" />
+          <entry key="Twig" value="158" />
           <entry key="TypeScript" value="3" />
           <entry key="YAML" value="25" />
         </counts>
@@ -67,8 +62,8 @@
           <entry key="css" value="9" />
           <entry key="env" value="15" />
           <entry key="js" value="365" />
-          <entry key="php" value="8124" />
-          <entry key="twig" value="8409" />
+          <entry key="php" value="8149" />
+          <entry key="twig" value="8482" />
           <entry key="yaml" value="254" />
         </counts>
       </usages-collector>
@@ -77,8 +72,8 @@
           <entry key=".env file" value="15" />
           <entry key="CSS" value="9" />
           <entry key="JavaScript" value="365" />
-          <entry key="PHP" value="8124" />
-          <entry key="Twig" value="8409" />
+          <entry key="PHP" value="8149" />
+          <entry key="Twig" value="8482" />
           <entry key="YAML" value="254" />
         </counts>
       </usages-collector>
@@ -91,11 +86,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/PanierController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="17" column="55" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
+            <state relative-caret-position="558">
+              <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
               <folding>
                 <element signature="e#34#91#0#PHP" expanded="true" />
               </folding>
@@ -103,23 +98,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/BackController.php">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/front/panier.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="11" selection-start-line="11" selection-end-line="13" selection-end-column="47" />
+            <state relative-caret-position="276">
+              <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/FrontController.php">
+        <entry file="file://$PROJECT_DIR$/templates/inc/header.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="3" selection-start-line="3" selection-end-line="10" selection-end-column="47" />
-              <folding>
-                <element signature="e#33#57#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="138">
+              <caret line="72" column="129" selection-start-line="72" selection-start-column="129" selection-end-line="72" selection-end-column="129" />
             </state>
           </provider>
         </entry>
@@ -141,7 +133,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Security/login_content.html.twig" />
         <option value="$PROJECT_DIR$/templates/bundles/FOSUserBundle/Registration/confirmed.html.twig" />
         <option value="$PROJECT_DIR$/config/packages/security.yaml" />
         <option value="$PROJECT_DIR$/tests/AddCategoryTest.php" />
@@ -164,7 +155,6 @@
         <option value="$PROJECT_DIR$/templates/inc/random-message.html.twig" />
         <option value="$PROJECT_DIR$/src/Repository/ProductRepository.php" />
         <option value="$PROJECT_DIR$/src/Repository/RandomMessageRepository.php" />
-        <option value="$PROJECT_DIR$/templates/inc/header.html.twig" />
         <option value="$PROJECT_DIR$/config/packages/vich_uploader.yaml" />
         <option value="$PROJECT_DIR$/src/Form/ProductType.php" />
         <option value="$PROJECT_DIR$/templates/back/CRUD/add-product.html.twig" />
@@ -192,6 +182,8 @@
         <option value="$PROJECT_DIR$/templates/inc/CRUD-message/listes-random-message.html.twig" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/src/Controller/PanierController.php" />
+        <option value="$PROJECT_DIR$/templates/inc/header.html.twig" />
+        <option value="$PROJECT_DIR$/templates/front/panier.html.twig" />
       </list>
     </option>
   </component>
@@ -369,6 +361,23 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Controller" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Shop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shop" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Shop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shop" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="front" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Shop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shop" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="inc" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -423,12 +432,12 @@
       <workItem from="1534472864990" duration="14396000" />
       <workItem from="1534494932112" duration="4879000" />
       <workItem from="1534655541032" duration="404000" />
-      <workItem from="1534698499836" duration="20326000" />
+      <workItem from="1534698499836" duration="20986000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175455000" />
+    <option name="totallyTimeSpent" value="176115000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -462,25 +471,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/inc/header.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="113" column="25" selection-start-line="113" selection-start-column="25" selection-end-line="113" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Migrations/Version20180813041035.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-174" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/back/CRUD/add-product.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/back/CRUD/edit-product.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="603">
@@ -810,11 +800,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/PanierController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="17" column="55" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
+        <state relative-caret-position="558">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
           <folding>
             <element signature="e#34#91#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/cozastore/shoping-cart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="338" column="4" selection-start-line="338" selection-start-column="4" selection-end-line="505" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/inc/header.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="72" column="129" selection-start-line="72" selection-start-column="129" selection-end-line="72" selection-end-column="129" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/front/panier.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
         </state>
       </provider>
     </entry>

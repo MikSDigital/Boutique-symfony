@@ -15,7 +15,9 @@ class PanierController extends Controller
      */
     public function panierListes(): Response {
 
-        return $this->render('front/panier.html.twig');
+        return $this->render('front/panier.html.twig', [
+            'title' => 'Panier'
+        ]);
     }
 
 
