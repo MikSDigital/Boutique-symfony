@@ -4,13 +4,38 @@
         <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
             <img src="images/icons/icon-close2.png" alt="CLOSE">
         </button>
+        <div id="resultat"></div>
+         {{ form_start(search, {'method': 'POST', 'attr': {'class': 'wrap-search-header flex-w p-l-15', 'id': 'form'}}) }}
+            <button class="flex-c-m trans-04">
+                <i class="zmdi zmdi-search"></i>
+            </button>
+            {{ form_widget(search.name) }}
 
-        {{ form_start(search, {'attr': {'class': 'wrap-search-header flex-w p-l-15'}}) }}
-        {{ form_widget(search.name) }}
-        <button type="submit" class="flex-c-m trans-04">
-            <i class="zmdi zmdi-search"></i>
-        </button>
         {{ form_end(search) }}
-
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function(){
+
+        $("#form").keypress(function(){
+
+            $.ajax({
+                type:"POST",
+                data: $(this).serialize(),
+                url:"{{ path('search') }}",
+                success: function(data){
+                    $("#search_name").html(data);
+                    $.post( "{{ path('search') }}", function( data ) {
+                        $( "#resultat" ).html( data );
+                    });
+                },
+                error: function(){
+                    $("#search_name").html('Une erreur est survenue.');
+                }
+            });
+            return false;
+        });
+    });
+</script>

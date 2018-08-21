@@ -48,7 +48,7 @@ class BackController extends Controller
 
     /**
      * @Route("/categorie/ajouter", name="add-category", methods="POST|GET")
-     * @param Request
+     * @param Request $request
      * @return Response
      */
     public function addCategory(Request $request): Response {

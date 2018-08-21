@@ -110,28 +110,29 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param string $value
-     * @return Product|null
+     * @param $value
+     * @return string
      * @throws \Exception
      */
-    public function findBySearch(String $value): ?Product {
-        // SELECT * FROM product WHERE name LIKE "%iphone%" OR description LIKE "%iphone%"
+    public function findBySearch(string $value) {
+
+        $bool = 1;
         $query = $this->createQueryBuilder('r')
             ->select('r')
-            ->where('r.name LIKE = :value')
-            ->orWhere('r.description LIKE = :value')
-            ->setParameter(':value', '%' .$value. '%')
-            ->getQuery()
-        ;
+            ->orwhere('r.name LIKE :chaine')
+            ->orWhere('r.description LIKE :chaine')
+            ->andWhere('r.isPublished = :bool')
+            ->orderBy('r.createdAt', 'DESC')
+            ->setParameter(':chaine', '%'.$value.'%')
+            ->setParameter(':bool', $bool)
+            ->getQuery();
 
         try {
             return $query->getResult();
         }
         catch (\Exception $e) {
-            throw new \Exception('Problème' . $e->getMessage(). $e->getFile(). $e->getLine(). $e->getCode());
+            throw new \Exception('Problème' . $e->getMessage());
         }
-
-
     }
 
 }

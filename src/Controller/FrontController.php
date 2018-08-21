@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\RandomMessage;
+use App\Form\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -147,8 +148,7 @@ class FrontController extends Controller
         $repositoryCategory = $this->getDoctrine()->getRepository(Category::class);
         $category = $repositoryCategory->findAll();
 
-        $response = new JsonResponse();
-        return $response->setData(array('category' => $category));
+        return new JsonResponse(array('data' => json_encode($category)));
 
     }
 
@@ -184,5 +184,32 @@ class FrontController extends Controller
            'title' => 'Contacter nous a tous moment si vous avez un problème !'
         ]);
     }
+
+    /**
+     * @Route("/recherche/", name="search", methods="POST")
+     * @param Request $request
+     * @return Response
+     */
+    public function search(Request $request): Response{
+
+        $search = $this->createForm(SearchType::class);
+        $search->handleRequest($request);
+
+        if($request->isXmlHttpRequest()) {
+
+           $value = $search['name'];
+           $result = $this->getDoctrine()->getRepository(Product::class)->findBySearch($value);
+
+            return new JsonResponse(['data' => json_encode($result)]);
+        }
+
+        return $this->render('inc/search.html.twig', [
+            'title' => 'Effectuer une recherche',
+            'search' => $search->createView()
+        ]);
+
+    }
+
+
 
 }

@@ -177,15 +177,10 @@
         </ul>
     </div>
 
-    {{ render(controller('App\\Controller\\SearchController::recherche')) }}
+    {{ render(controller('App\\Controller\\FrontController::search'
+    )) }}
 
-    {% if resultSearch is defined %}
-        {% for resultat in resultSearch %}
-            {{ resultat.name }}<br>
-            {{ resultat.description }}
-        {% endfor %}
-    {% else %}
-    {% endif %}
+
 
 </header>
 
@@ -269,3 +264,4 @@
         </div>
     </div>
 </div>
+
