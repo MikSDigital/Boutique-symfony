@@ -110,7 +110,7 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $value
+     * @param string $value
      * @return string
      * @throws \Exception
      */

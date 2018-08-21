@@ -186,7 +186,7 @@ class FrontController extends Controller
     }
 
     /**
-     * @Route("/recherche/", name="search", methods="POST")
+     * @Route("/recherche/", name="search", methods="POST|GET")
      * @param Request $request
      * @return Response
      */
@@ -199,8 +199,7 @@ class FrontController extends Controller
 
            $value = $search['name'];
            $result = $this->getDoctrine()->getRepository(Product::class)->findBySearch($value);
-
-            return new JsonResponse(['data' => json_encode($result)]);
+           return new JsonResponse(['data' => json_encode($result)]);
         }
 
         return $this->render('inc/search.html.twig', [

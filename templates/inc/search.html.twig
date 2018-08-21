@@ -19,15 +19,15 @@
 
     $(document).ready(function(){
 
-        $("#form").keypress(function(){
+        $("#form").submit(function(){
 
             $.ajax({
                 type:"POST",
                 data: $(this).serialize(),
-                url:"{{ path('search') }}",
+                url:"/recherche/",
                 success: function(data){
                     $("#search_name").html(data);
-                    $.post( "{{ path('search') }}", function( data ) {
+                    $.get( "/recherche/", function( data ) {
                         $( "#resultat" ).html( data );
                     });
                 },
